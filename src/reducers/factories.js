@@ -1,4 +1,4 @@
-import * as apiCalls from '../api/factoryApi'
+import * as apiCalls from '../lib/api/factoryApi'
 
 const LOAD_FACTORIES = 'LOAD_FACTORIES'
 const SET_ACTIVE_FACTORY = 'SET_ACTIVE_FACTORY'
