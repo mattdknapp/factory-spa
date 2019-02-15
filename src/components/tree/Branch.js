@@ -20,7 +20,7 @@ const Branch = props => {
       numbers
     } = content
 
-    const handleClick = () => setActiveFactory(id)
+    const handleClick = () => setActiveFactory(content)
     const minMax = `${min}/${max}`
 
     return (

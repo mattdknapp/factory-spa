@@ -1,27 +1,24 @@
 import { connect } from 'react-redux'
 import {
-  fetchFactories,
-  syncFactory,
-  updateFactory,
-} from '../reducers/factories'
+  setActiveFactory,
+  setAttribute,
+  clearActiveFactory
+} from '../reducers/activeFactory'
 
 const mapStateToProps = state => {
   const {
-    factories: {
-      data,
-      activeId
-    }
+    activeFactory
   } = state
 
   return {
-    factories: data
+    activeFactory
   }
 }
 
 const mapDispatchToProps = {
-  fetchFactories,
-  syncFactory,
-  updateFactory
+  setActiveFactory,
+  setAttribute,
+  clearActiveFactory
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

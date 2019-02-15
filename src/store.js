@@ -4,9 +4,14 @@ import {
   applyMiddleware
 } from 'redux'
 import thunk from 'redux-thunk'
+import logger from 'redux-logger'
 import factories from './reducers/factories'
+import activeFactory from './reducers/activeFactory'
 
 export default createStore(
-  combineReducers({ factories }),
-  applyMiddleware(thunk)
+  combineReducers({
+    factories,
+    activeFactory
+  }),
+  applyMiddleware(thunk, logger)
 )

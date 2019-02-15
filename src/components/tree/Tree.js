@@ -2,16 +2,21 @@ import React, {useState, useEffect, Fragment} from 'react'
 
 import './Tree.css'
 import factoryContainer from '../../containers/factories'
+import activeFactoryContainer from '../../containers/activeFactory'
+import composeContainers from '../../lib/composeContainers'
 import Root from './Root'
 import Branch from './Branch'
 import Modal from '../modal/Modal'
+import Form from '../form/Form'
 
 const Tree = props => {
   const {
     factories,
-    activeId,
+    activeFactory,
     fetchFactories,
-    setActiveFactory
+    setActiveFactory,
+    updateFactory,
+    clearActiveFactory
   } = props
 
   const [
@@ -28,14 +33,19 @@ const Tree = props => {
     fetchFactories()
   })
 
-  const closeModal = () => setActiveFactory(null)
+  const closeModal = () => clearActiveFactory()
+  const safeName = activeFactory && activeFactory.name
 
   return (
     <Fragment>
       <Modal
         handleClose={closeModal}
-        open={activeId}
-      />
+        handleSave={updateFactory}
+        header={safeName}
+        open={!!activeFactory.id}
+      >
+        <Form/>
+      </Modal>
       <Root>
         {factories.map(factory => {
           const {
@@ -58,4 +68,9 @@ const Tree = props => {
   )
 }
 
-export default factoryContainer(Tree)
+const containers = [
+	factoryContainer,
+	activeFactoryContainer
+]
+
+export default composeContainers(containers, Tree)
