@@ -1,9 +1,14 @@
-const firstFactory = {
+import * as apiCalls from '../api/factoryApi'
+
+const ADD_FACTORY = 'ADD_FACTORY'
+const LOAD_FACTORIES = 'LOAD_FACTORIES'
+
+const innerFactory = {
   id: 1,
   name: 'First Factory',
   min: 43,
   max: 900,
-  trinkets: [
+  numbers: [
     123,
     456,
     789
@@ -17,11 +22,11 @@ const initialState = {
       name: 'First Factory',
       min: 43,
       max: 900,
-      trinkets: [
+      numbers: [
         123,
         456,
         789,
-        firstFactory
+        innerFactory
       ]
     },
     {
@@ -29,7 +34,7 @@ const initialState = {
       name: 'Second Factory',
       min: 43,
       max: 900,
-      trinkets: [
+      numbers: [
         987,
         654,
         321
@@ -45,8 +50,28 @@ const reducer = (state = initialState, action = {}) => {
   } = action
 
   switch (type) {
+    case LOAD_FACTORIES:
+      return {
+        ...state,
+        data: payload
+      }
     default:
       return state
+  }
+}
+
+export const loadFactories = payload => {
+  return { type: LOAD_FACTORIES, payload }
+}
+
+export const fetchFactories = () => {
+  return dispatch => {
+    const handleResponse = res => {
+      return dispatch(loadFactories(res.factories))
+    }
+
+    apiCalls.getFactories()
+      .then(handleResponse)
   }
 }
 

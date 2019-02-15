@@ -1,12 +1,26 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import factoryContainer from '../../containers/factories'
 import Root from './Root'
 import Branch from './Branch'
 
 const Tree = props => {
   const {
-    factories
+    factories,
+    fetchFactories
   } = props
+  const [
+    firstRender,
+    setIsFirstRender
+  ] = useState(true)
+
+  useEffect(() => {
+    if (!firstRender) {
+      return
+    }
+
+    setIsFirstRender(false)
+    fetchFactories()
+  })
 
   return (
     <Root>

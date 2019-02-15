@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 const Root = props => {
   const {
@@ -6,9 +6,11 @@ const Root = props => {
   } = props
 
   return (
-    <ul className="tree">
-      { children }
-    </ul>
+    <div>
+      <ul className="tree">
+        { children }
+      </ul>
+    </div>
   )
 }
 

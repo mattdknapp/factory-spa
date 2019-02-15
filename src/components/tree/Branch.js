@@ -1,5 +1,4 @@
 import React from 'react'
-import Root from './Root'
 
 const mapChildToBranch = parentName => (child, index) => {
   const key = `${parentName}-${index}`
@@ -14,10 +13,9 @@ const Branch = props => {
   if(typeof content === 'object') {
     const {
       name,
-      data,
       min,
       max,
-      trinkets
+      numbers
     } = content
 
     const minMax = `${min}/${max}`
@@ -26,7 +24,7 @@ const Branch = props => {
         <span>{name}</span>
         <span className="branch-data">{minMax}</span>
         <ul>
-          {trinkets.map(mapChildToBranch(trinkets))}
+          {numbers.map(mapChildToBranch(numbers))}
         </ul>
       </li>
     )

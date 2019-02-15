@@ -1,4 +1,7 @@
 import { connect } from 'react-redux'
+import {
+  fetchFactories
+} from '../reducers/factories'
 
 const mapStateToProps = state => {
   const {
@@ -12,4 +15,6 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)
+const mapDispatchToProps = { fetchFactories }
+
+export default connect(mapStateToProps, mapDispatchToProps)
