@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 
-import '../Tree.css'
 import Tree from './tree/Tree'
 import store from '../store'
 

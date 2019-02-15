@@ -1,13 +1,19 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, Fragment} from 'react'
+
+import './Tree.css'
 import factoryContainer from '../../containers/factories'
 import Root from './Root'
 import Branch from './Branch'
+import Modal from '../modal/Modal'
 
 const Tree = props => {
   const {
     factories,
-    fetchFactories
+    activeId,
+    fetchFactories,
+    setActiveFactory
   } = props
+
   const [
     firstRender,
     setIsFirstRender
@@ -23,23 +29,27 @@ const Tree = props => {
   })
 
   return (
-    <Root>
-      {factories.map(factory => {
-        const {
-          id,
-          name
-        } = factory
+    <Fragment>
+      <Modal open={activeId}/>
+      <Root>
+        {factories.map(factory => {
+          const {
+            id,
+            name
+          } = factory
 
-        const key = `${id}-${name}`
+          const key = `${id}-${name}`
 
-        return (
-          <Branch
-            key={key}
-            content={factory}
-          />
-        )
-      })}
-    </Root>
+          return (
+            <Branch
+              key={key}
+              setActiveFactory={setActiveFactory}
+              content={factory}
+            />
+          )
+        })}
+      </Root>
+    </Fragment>
   )
 }
 

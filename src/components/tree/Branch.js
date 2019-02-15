@@ -7,21 +7,30 @@ const mapChildToBranch = parentName => (child, index) => {
 
 const Branch = props => {
   const {
-    content
+    content,
+    setActiveFactory
   } = props
 
   if(typeof content === 'object') {
     const {
+      id,
       name,
       min,
       max,
       numbers
     } = content
 
+    const handleClick = () => setActiveFactory(id)
     const minMax = `${min}/${max}`
+
     return (
       <li>
-        <span>{name}</span>
+        <span
+          className="factory-title"
+          onClick={handleClick}
+        >
+          {name}
+        </span>
         <span className="branch-data">{minMax}</span>
         <ul>
           {numbers.map(mapChildToBranch(numbers))}

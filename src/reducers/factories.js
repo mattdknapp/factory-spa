@@ -1,46 +1,11 @@
 import * as apiCalls from '../api/factoryApi'
 
-const ADD_FACTORY = 'ADD_FACTORY'
 const LOAD_FACTORIES = 'LOAD_FACTORIES'
-
-const innerFactory = {
-  id: 1,
-  name: 'First Factory',
-  min: 43,
-  max: 900,
-  numbers: [
-    123,
-    456,
-    789
-  ]
-}
+const SET_ACTIVE_FACTORY = 'SET_ACTIVE_FACTORY'
 
 const initialState = {
-  data: [
-    {
-      id: 1,
-      name: 'First Factory',
-      min: 43,
-      max: 900,
-      numbers: [
-        123,
-        456,
-        789,
-        innerFactory
-      ]
-    },
-    {
-      id: 2,
-      name: 'Second Factory',
-      min: 43,
-      max: 900,
-      numbers: [
-        987,
-        654,
-        321
-      ]
-    }
-  ]
+  activeId: null,
+  data: []
 }
 
 const reducer = (state = initialState, action = {}) => {
@@ -55,6 +20,11 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         data: payload
       }
+    case SET_ACTIVE_FACTORY:
+      return {
+        ...state,
+        activeId: payload
+      }
     default:
       return state
   }
@@ -62,6 +32,10 @@ const reducer = (state = initialState, action = {}) => {
 
 export const loadFactories = payload => {
   return { type: LOAD_FACTORIES, payload }
+}
+
+export const setActiveFactory = payload => {
+  return { type: SET_ACTIVE_FACTORY, payload }
 }
 
 export const fetchFactories = () => {
