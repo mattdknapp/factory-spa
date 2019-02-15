@@ -28,9 +28,14 @@ const Tree = props => {
     fetchFactories()
   })
 
+  const closeModal = () => setActiveFactory(null)
+
   return (
     <Fragment>
-      <Modal open={activeId}/>
+      <Modal
+        handleClose={closeModal}
+        open={activeId}
+      />
       <Root>
         {factories.map(factory => {
           const {

@@ -3,7 +3,9 @@ import './Modal.css'
 
 const Modal = props => {
   const {
-    open
+    open,
+    handleClose,
+    handleSave
   } = props
 
   if (open) {
@@ -21,8 +23,8 @@ const Modal = props => {
               <p>Modal body text goes here.</p>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-primary">Save changes</button>
-              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" className="btn btn-primary" onClick={handleSave}>Save changes</button>
+              <button type="button" className="btn btn-secondary" onClick={handleClose} data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
