@@ -4,12 +4,14 @@ import * as mapDispatchToProps from '../redux/actionCreators/activeFactory'
 const mapStateToProps = state => {
   const {
     activeFactory: {
-      data
+      data,
+      errors
     }
   } = state
 
   return {
-    activeFactory: data
+    activeFactory: data,
+    errors
   }
 }
 

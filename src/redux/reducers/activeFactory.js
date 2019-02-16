@@ -1,15 +1,9 @@
 import {
   SET_ATTRIBUTE,
   CLEAR_ACTIVE_FACTORY,
-  SET_ACTIVE_FACTORY
+  SET_ACTIVE_FACTORY,
+  SET_ERRORS,
 } from '../actionTypes/activeFactory'
-
-import {
-  setAttribute,
-  clearActiveFactory,
-  setActiveFactory,
-  updateFactory
-} from '../actionCreators/activeFactory'
 
 const initialState = {
   data: {
@@ -17,7 +11,30 @@ const initialState = {
     name: '',
     min: '',
     max: ''
+  },
+  errors: {}
+}
+
+const compileErrors = (errors, newError) => {
+  const {
+    path,
+    message
+  } = newError
+
+  return {
+    ...errors,
+    [path]: message
   }
+}
+
+const mapErrorsToObject = result => {
+  const {
+    errors: {
+      details
+    }
+  } = result
+
+  return details.reduce(compileErrors, {})
 }
 
 const reducer = (state = initialState, action = {}) => {
@@ -42,6 +59,11 @@ const reducer = (state = initialState, action = {}) => {
       }
     case CLEAR_ACTIVE_FACTORY:
       return initialState
+    case SET_ERRORS:
+      return {
+        ...state,
+        errors: mapErrorsToObject(payload)
+      }
     default:
       return state
   }

@@ -1,5 +1,6 @@
 import React from 'react'
 import Input from './Input'
+import { formatAsNumber } from '../../lib/formatters'
 import activeFactoryContainer from '../../containers/activeFactory'
 
 const cancelDefault = e => e.preventDefault()
@@ -11,11 +12,19 @@ const Form = props => {
       min = 0,
       max = 1
     },
+    errors,
+    errors: {
+      name: nameError,
+      min: minError,
+      max: maxError
+    },
     setAttribute
   } = props
 
   return (
-    <form onSubmit={cancelDefault}>
+    <form
+      className="was-validated"
+      onSubmit={cancelDefault}>
       <div className="form-group">
         <Input
           type="text"
@@ -23,6 +32,8 @@ const Form = props => {
           value={name}
           label="Name"
           setAttribute={setAttribute}
+          error={nameError}
+          required
         />
       </div>
       <div className="form-group">
@@ -32,8 +43,10 @@ const Form = props => {
           value={min}
           label="Min"
           setAttribute={setAttribute}
+          formatter={formatAsNumber}
           min={0}
           max={max - 1}
+          error={minError}
         />
         <Input
           type="number"
@@ -41,7 +54,9 @@ const Form = props => {
           value={max}
           label="Max"
           setAttribute={setAttribute}
+          formatter={formatAsNumber}
           min={min + 1}
+          error={maxError}
         />
       </div>
     </form>

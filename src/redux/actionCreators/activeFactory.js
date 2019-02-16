@@ -2,7 +2,8 @@ import socket from '../../lib/socket'
 import {
   SET_ATTRIBUTE,
   CLEAR_ACTIVE_FACTORY,
-  SET_ACTIVE_FACTORY
+  SET_ACTIVE_FACTORY,
+  SET_ERRORS
 } from '../actionTypes/activeFactory'
 
 export const setAttribute = payload => {
@@ -17,6 +18,11 @@ export const setActiveFactory = payload => {
   return { type: SET_ACTIVE_FACTORY, payload }
 }
 
+export const setErrors = payload => {
+  console.log(payload)
+  return { type: SET_ERRORS, payload }
+}
+
 export const updateFactory = () => {
   return (dispatch, getState) => {
     const {
@@ -25,9 +31,12 @@ export const updateFactory = () => {
 
     const onComplete = data => {
       if (data.ok) {
-        dispatch(clearActiveFactory())
+        return dispatch(clearActiveFactory())
       }
+
+      return dispatch(setErrors(data))
     }
+
     socket.emit('UPDATE_FACTORY', JSON.stringify(activeFactory.data), onComplete)
   }
 }
