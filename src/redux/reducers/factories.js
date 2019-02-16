@@ -44,10 +44,23 @@ const reducer = (state = initialState, action = {}) => {
         data = []
       } = state
 
-      const newData = data.reduce(update(payload), [])
+      const ids = data.map(f => f.id)
+      const recordExists = !!ids.includes(payload.id)
+
+      if (recordExists) {
+        const newData = data.reduce(update(payload), [])
+        return {
+          ...state,
+          data: newData
+        }
+      }
+
       return {
         ...state,
-        data: newData
+        data: {
+          ...data,
+          payload
+        }
       }
     default:
       return state

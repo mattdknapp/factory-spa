@@ -30,15 +30,18 @@ export const createNewFactory = () => {
 export const updateFactory = () => {
   return (dispatch, getState) => {
     const {
-      activeFactory
+      activeFactory: {
+        data
+      }
     } = getState()
 
-    const onComplete = data => {
-      if (data.ok) {
+    const onComplete = res => {
+      if (res.ok) {
         return dispatch(clearActiveFactory())
       }
     }
 
-    socket.emit('UPDATE_FACTORY', JSON.stringify(activeFactory.data), onComplete)
+    const actionType = data.id ? 'UPDATE_FACTORY' : 'CREATE_FACTORY'
+    socket.emit(actionType, JSON.stringify(data), onComplete)
   }
 }
