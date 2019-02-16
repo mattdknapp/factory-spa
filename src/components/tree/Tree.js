@@ -8,15 +8,18 @@ import Root from './Root'
 import Branch from './Branch'
 import Modal from '../modal/Modal'
 import Form from '../form/Form'
+import NewButton from './NewButton'
 
 const Tree = props => {
   const {
     factories,
     activeFactory,
+    active,
     fetchFactories,
     setActiveFactory,
     updateFactory,
-    clearActiveFactory
+    clearActiveFactory,
+    createNewFactory
   } = props
 
   const [
@@ -42,7 +45,7 @@ const Tree = props => {
         handleClose={closeModal}
         handleSave={updateFactory}
         header={safeName}
-        open={!!activeFactory.id}
+        open={active}
       >
         <Form/>
       </Modal>
@@ -63,6 +66,9 @@ const Tree = props => {
             />
           )
         })}
+        <li>
+          <NewButton handleClick={createNewFactory}/>
+        </li>
       </Root>
     </Fragment>
   )

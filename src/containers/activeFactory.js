@@ -5,13 +5,15 @@ const mapStateToProps = state => {
   const {
     activeFactory: {
       data,
-      errors
+      errors,
+      active
     }
   } = state
 
   return {
     activeFactory: data,
-    errors
+    errors,
+    active
   }
 }
 

@@ -51,3 +51,7 @@ ul.tree li:last-child:before {
   cursor: pointer;
   transition: 0.3s;
 }
+
+ul.tree li button {
+  padding: 0;
+}

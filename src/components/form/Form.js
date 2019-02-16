@@ -10,13 +10,16 @@ const Form = props => {
     activeFactory: {
       name,
       min = 0,
-      max = 1
+      max = 1,
+      count,
+      numbers
     },
     errors,
     errors: {
       name: nameError,
       min: minError,
-      max: maxError
+      max: maxError,
+      count: countError
     },
     setAttribute
   } = props
@@ -57,6 +60,17 @@ const Form = props => {
           formatter={formatAsNumber}
           min={min + 1}
           error={maxError}
+        />
+        <Input
+          type="number"
+          attributeKey="count"
+          value={count}
+          label="Child Count"
+          setAttribute={setAttribute}
+          formatter={formatAsNumber}
+          min={1}
+          max={15}
+          error={countError}
         />
       </div>
     </form>

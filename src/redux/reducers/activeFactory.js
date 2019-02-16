@@ -3,6 +3,7 @@ import {
   CLEAR_ACTIVE_FACTORY,
   SET_ACTIVE_FACTORY,
   SET_ERRORS,
+  CREATE_NEW_FACTORY
 } from '../actionTypes/activeFactory'
 
 const initialState = {
@@ -10,9 +11,20 @@ const initialState = {
     id: null,
     name: '',
     min: '',
-    max: ''
+    max: '',
+    count: ''
   },
-  errors: {}
+  errors: {},
+  active: false
+}
+
+const defaultFactory = {
+  ...initialState,
+  data: {
+    ...initialState.data,
+    count: 1
+  },
+  active: true
 }
 
 const compileErrors = (errors, newError) => {
@@ -51,10 +63,18 @@ const reducer = (state = initialState, action = {}) => {
         }
       }
     case SET_ACTIVE_FACTORY:
+      const count = (payload.numbers && payload.numbers.length) || 1
+
       return {
         ...state,
-        data: payload
+        data: {
+          ...payload,
+          count
+        },
+        active: true
       }
+    case CREATE_NEW_FACTORY:
+      return defaultFactory
     case CLEAR_ACTIVE_FACTORY:
       return initialState
     case SET_ERRORS:

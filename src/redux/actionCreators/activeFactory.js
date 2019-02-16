@@ -3,7 +3,8 @@ import {
   SET_ATTRIBUTE,
   CLEAR_ACTIVE_FACTORY,
   SET_ACTIVE_FACTORY,
-  SET_ERRORS
+  SET_ERRORS,
+  CREATE_NEW_FACTORY
 } from '../actionTypes/activeFactory'
 
 export const setAttribute = payload => {
@@ -19,8 +20,11 @@ export const setActiveFactory = payload => {
 }
 
 export const setErrors = payload => {
-  console.log(payload)
   return { type: SET_ERRORS, payload }
+}
+
+export const createNewFactory = () => {
+  return { type: CREATE_NEW_FACTORY }
 }
 
 export const updateFactory = () => {

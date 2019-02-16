@@ -17,11 +17,12 @@ const Branch = props => {
       name,
       min,
       max,
-      numbers = []
+      numbers
     } = content
 
     const handleClick = () => setActiveFactory(content)
     const minMax = `${min}/${max}`
+    const safeNumbers = numbers || []
 
     return (
       <li>
@@ -33,7 +34,7 @@ const Branch = props => {
         </span>
         <span className="branch-data">{minMax}</span>
         <ul>
-          {numbers.map(mapChildToBranch(numbers))}
+          {safeNumbers.map(mapChildToBranch(safeNumbers))}
         </ul>
       </li>
     )
