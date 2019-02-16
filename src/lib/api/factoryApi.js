@@ -1,3 +1,5 @@
+import config from '../../config'
+
 const defaultOpts = {
   mode: 'cors',
   headers: {
@@ -5,5 +7,9 @@ const defaultOpts = {
   }
 }
 
-export const getFactories = () => fetch('http://localhost:3001', defaultOpts)
+const {
+  serverUrl
+} = config
+
+export const getFactories = () => fetch(serverUrl, defaultOpts)
   .then(res => res.json())

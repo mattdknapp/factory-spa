@@ -1,4 +1,4 @@
-import socket from './socket'
+import socket from './api/socket'
 import Alert from 'react-s-alert'
 import store from '../redux/store'
 import {

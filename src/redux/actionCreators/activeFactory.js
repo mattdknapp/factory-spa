@@ -1,4 +1,4 @@
-import socket from '../../lib/socket'
+import socket from '../../lib/api/socket'
 import {
   SET_ATTRIBUTE,
   CLEAR_ACTIVE_FACTORY,

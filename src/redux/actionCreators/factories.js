@@ -1,5 +1,5 @@
 import * as apiCalls from '../../lib/api/factoryApi'
-import socket from '../../lib/socket'
+import socket from '../../lib/api/socket'
 import {
   LOAD_FACTORIES,
   SYNC_FACTORY,
