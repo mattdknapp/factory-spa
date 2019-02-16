@@ -33,8 +33,6 @@ export const updateFactory = () => {
       if (data.ok) {
         return dispatch(clearActiveFactory())
       }
-
-      return dispatch(setErrors(data))
     }
 
     socket.emit('UPDATE_FACTORY', JSON.stringify(activeFactory.data), onComplete)

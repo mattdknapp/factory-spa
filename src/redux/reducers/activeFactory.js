@@ -27,12 +27,10 @@ const compileErrors = (errors, newError) => {
   }
 }
 
-const mapErrorsToObject = result => {
+const mapErrorsToObject = error => {
   const {
-    errors: {
-      details
-    }
-  } = result
+    details
+  } = error
 
   return details.reduce(compileErrors, {})
 }
