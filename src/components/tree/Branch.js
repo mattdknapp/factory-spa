@@ -17,7 +17,7 @@ const Branch = props => {
       name,
       min,
       max,
-      numbers
+      numbers = []
     } = content
 
     const handleClick = () => setActiveFactory(content)
