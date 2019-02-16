@@ -11,8 +11,7 @@ const initialState = {
     name: '',
     min: '',
     max: ''
-  },
-  transactionId: null
+  }
 }
 
 const reducer = (state = initialState, action = {}) => {
@@ -34,11 +33,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         data: payload
-      }
-    case SET_TRANSACTION_ID:
-      return {
-        ...state,
-        transactionId: payload
       }
     case CLEAR_ACTIVE_FACTORY:
       return initialState
@@ -65,24 +59,16 @@ export const setActionId = payload => {
 
 export const updateFactory = () => {
   return (dispatch, getState) => {
-    const transactionId = Math.random().toString(36).substring(14)
-    dispatch(setActionId)
-
     const {
       activeFactory
     } = getState()
 
-    const factoryWithActionId = {
-      ...activeFactory.data,
-      transactionId
-    }
-
     const onComplete = data => {
-      console.log("+++++++++++++++++++++++++")
-      console.log(data)
-      console.log("+++++++++++++++++++++++++")
+      if (data.ok) {
+        dispatch(clearActiveFactory())
+      }
     }
-    socket.emit('UPDATE_FACTORY', JSON.stringify(factoryWithActionId), onComplete)
+    socket.emit('UPDATE_FACTORY', JSON.stringify(activeFactory.data), onComplete)
   }
 }
 

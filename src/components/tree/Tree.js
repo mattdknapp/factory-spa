@@ -33,19 +33,14 @@ const Tree = props => {
     fetchFactories()
   })
 
-
-  const safeName = activeFactory && activeFactory.name
   const closeModal = () => clearActiveFactory()
-  const handleSave = () => {
-    updateFactory()
-    closeModal()
-  }
+  const safeName = activeFactory && activeFactory.name
 
   return (
     <Fragment>
       <Modal
         handleClose={closeModal}
-        handleSave={handleSave}
+        handleSave={updateFactory}
         header={safeName}
         open={!!activeFactory.id}
       >
