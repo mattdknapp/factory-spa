@@ -3,10 +3,10 @@ import React, { Fragment } from 'react'
 const Input = props => {
   const {
     label,
-    type,
     value = '',
     attributeKey,
-    setAttribute
+    setAttribute,
+    ...rest
   } = props
 
   const handleChange = e => {
@@ -20,10 +20,10 @@ const Input = props => {
     <Fragment>
       <label>{label}</label>
       <input
-        type={type}
         className="form-control"
         value={value}
         onChange={handleChange}
+        {...rest}
       />
     </Fragment>
   )

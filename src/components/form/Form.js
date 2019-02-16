@@ -8,13 +8,12 @@ const Form = props => {
   const {
     activeFactory: {
       name,
-      min,
-      max
+      min = 0,
+      max = 1
     },
     setAttribute
   } = props
 
-  console.log(props)
   return (
     <form onSubmit={cancelDefault}>
       <div className="form-group">
@@ -24,6 +23,25 @@ const Form = props => {
           value={name}
           label="Name"
           setAttribute={setAttribute}
+        />
+      </div>
+      <div className="form-group">
+        <Input
+          type="number"
+          attributeKey="min"
+          value={min}
+          label="Min"
+          setAttribute={setAttribute}
+          min={0}
+          max={max - 1}
+        />
+        <Input
+          type="number"
+          attributeKey="max"
+          value={max}
+          label="Max"
+          setAttribute={setAttribute}
+          min={min + 1}
         />
       </div>
     </form>
