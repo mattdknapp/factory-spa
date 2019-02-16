@@ -1,6 +1,7 @@
 import {
   LOAD_FACTORIES,
-  SYNC_FACTORY
+  SYNC_FACTORY,
+  REMOVE_FACTORY
 } from '../actionTypes/factories'
 
 import {
@@ -27,11 +28,17 @@ const update = updatedFactory => (acc, next) => {
   ]
 }
 
+const createFilter = id => f => f.id !== id
+
 const reducer = (state = initialState, action = {}) => {
   const {
     type,
     payload
   } = action
+
+  const {
+    data = []
+  } = state
 
   switch (type) {
     case LOAD_FACTORIES:
@@ -40,10 +47,6 @@ const reducer = (state = initialState, action = {}) => {
         data: payload
       }
     case SYNC_FACTORY:
-      const {
-        data = []
-      } = state
-
       const ids = data.map(f => f.id)
       const recordExists = !!ids.includes(payload.id)
 
@@ -61,6 +64,14 @@ const reducer = (state = initialState, action = {}) => {
           ...data,
           payload
         ]
+      }
+    case REMOVE_FACTORY:
+      const filter = createFilter(payload.id)
+      const newData = data.filter(filter)
+
+      return {
+        ...state,
+        data: newData
       }
     default:
       return state

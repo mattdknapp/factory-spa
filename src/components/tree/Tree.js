@@ -16,6 +16,7 @@ const Tree = props => {
     activeFactory,
     active,
     fetchFactories,
+    archiveFactory,
     setActiveFactory,
     updateFactory,
     clearActiveFactory,
@@ -62,6 +63,7 @@ const Tree = props => {
             <Branch
               key={key}
               setActiveFactory={setActiveFactory}
+              archiveFactory={archiveFactory}
               content={factory}
             />
           )

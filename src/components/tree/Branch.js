@@ -8,7 +8,8 @@ const mapChildToBranch = parentName => (child, index) => {
 const Branch = props => {
   const {
     content,
-    setActiveFactory
+    setActiveFactory,
+    archiveFactory
   } = props
 
   if(typeof content === 'object') {
@@ -21,18 +22,26 @@ const Branch = props => {
     } = content
 
     const handleClick = () => setActiveFactory(content)
-    const minMax = `${min}/${max}`
+    const handleArchive = () => archiveFactory(id)
     const safeNumbers = numbers || []
+    const displayData = `${name}-(${min}/${max})`
 
     return (
       <li>
-        <span
-          className="factory-title"
-          onClick={handleClick}
-        >
-          {name}
-        </span>
-        <span className="branch-data">{minMax}</span>
+        <div className="d-inline-flex factory-actions">
+          <div
+            className="factory-title mr-auto"
+            onClick={handleClick}
+          >
+            {displayData}
+          </div>
+          <button
+            onClick={handleArchive}
+            className="btn btn-danger"
+          >
+            ARCHIVE
+          </button>
+        </div>
         <ul>
           {safeNumbers.map(mapChildToBranch(safeNumbers))}
         </ul>

@@ -2,10 +2,12 @@ import socket from './socket'
 import Alert from 'react-s-alert'
 import store from '../redux/store'
 import {
-  SYNC_FACTORY
+  SYNC_FACTORY,
+  REMOVE_FACTORY
 } from '../redux/actionTypes/factories'
 import {
-  syncFactory
+  syncFactory,
+  removeFactory
 } from '../redux/actionCreators/factories'
 import {
   setErrors
@@ -19,6 +21,11 @@ const initHandlers = () => {
   socket.on(SYNC_FACTORY, data => {
     const json = JSON.parse(data)
     dispatch(syncFactory(json))
+  })
+
+  socket.on(REMOVE_FACTORY, data => {
+    const json = JSON.parse(data)
+    dispatch(removeFactory(json))
   })
 
   socket.on('error', err => {

@@ -55,3 +55,7 @@ ul.tree li:last-child:before {
 ul.tree li button {
   padding: 0;
 }
+
+div.factory-actions {
+  width: 300px;
+}
