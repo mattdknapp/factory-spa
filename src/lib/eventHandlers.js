@@ -1,4 +1,5 @@
 import socket from './socket'
+import Alert from 'react-s-alert'
 import store from '../redux/store'
 import {
   SYNC_FACTORY
@@ -23,6 +24,11 @@ const initHandlers = () => {
   socket.on('error', err => {
     const jsonError = JSON.parse(err)
     dispatch(setErrors(jsonError))
+  })
+
+  socket.on('exception', exp => {
+    console.error('Server Error: ', exp)
+    Alert.error('A Server Error Occurred')
   })
 }
 
