@@ -1,8 +1,5 @@
 import { connect } from 'react-redux'
-import {
-  fetchFactories,
-  syncFactory
-} from '../reducers/factories'
+import * as mapDispatchToProps from '../redux/actionCreators/factories'
 
 const mapStateToProps = state => {
   const {
@@ -15,11 +12,6 @@ const mapStateToProps = state => {
   return {
     factories: data
   }
-}
-
-const mapDispatchToProps = {
-  fetchFactories,
-  syncFactory
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

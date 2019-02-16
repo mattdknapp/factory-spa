@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 
 import Tree from './tree/Tree'
-import store from '../store'
+import store from '../redux/store'
 
 class App extends Component {
   render() {

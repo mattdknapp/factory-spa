@@ -1,7 +1,13 @@
-import * as apiCalls from '../lib/api/factoryApi'
+import {
+  LOAD_FACTORIES,
+  SYNC_FACTORY
+} from '../actionTypes/factories'
 
-export const LOAD_FACTORIES = 'LOAD_FACTORIES'
-export const SYNC_FACTORY = 'SYNC_FACTORY'
+import {
+  loadFactories,
+  syncFactory,
+  fetchFactories
+} from '../actionCreators/factories'
 
 const initialState = {
   data: []
@@ -45,25 +51,6 @@ const reducer = (state = initialState, action = {}) => {
       }
     default:
       return state
-  }
-}
-
-export const loadFactories = payload => {
-  return { type: LOAD_FACTORIES, payload }
-}
-
-export const syncFactory = payload => {
-  return { type: SYNC_FACTORY, payload }
-}
-
-export const fetchFactories = () => {
-  return dispatch => {
-    const handleResponse = res => {
-      return dispatch(loadFactories(res.factories))
-    }
-
-    apiCalls.getFactories()
-      .then(handleResponse)
   }
 }
 

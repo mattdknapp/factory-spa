@@ -1,0 +1,2 @@
+export const LOAD_FACTORIES = 'LOAD_FACTORIES'
+export const SYNC_FACTORY = 'SYNC_FACTORY'
