@@ -57,10 +57,10 @@ const reducer = (state = initialState, action = {}) => {
 
       return {
         ...state,
-        data: {
+        data: [
           ...data,
           payload
-        }
+        ]
       }
     default:
       return state

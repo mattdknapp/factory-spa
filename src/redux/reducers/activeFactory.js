@@ -22,6 +22,9 @@ const defaultFactory = {
   ...initialState,
   data: {
     ...initialState.data,
+    name: 'Factory',
+    min: 1,
+    max: 100,
     count: 1
   },
   active: true

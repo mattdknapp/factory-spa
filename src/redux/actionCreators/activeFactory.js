@@ -4,6 +4,7 @@ import {
   CLEAR_ACTIVE_FACTORY,
   SET_ACTIVE_FACTORY,
   SET_ERRORS,
+  UPDATE_FACTORY,
   CREATE_NEW_FACTORY
 } from '../actionTypes/activeFactory'
 
@@ -41,7 +42,7 @@ export const updateFactory = () => {
       }
     }
 
-    const actionType = data.id ? 'UPDATE_FACTORY' : 'CREATE_FACTORY'
+    const actionType = data.id ? UPDATE_FACTORY : CREATE_NEW_FACTORY
     socket.emit(actionType, JSON.stringify(data), onComplete)
   }
 }
