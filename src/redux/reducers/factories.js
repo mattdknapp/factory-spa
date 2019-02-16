@@ -4,12 +4,6 @@ import {
   REMOVE_FACTORY
 } from '../actionTypes/factories'
 
-import {
-  loadFactories,
-  syncFactory,
-  fetchFactories
-} from '../actionCreators/factories'
-
 const initialState = {
   data: []
 }

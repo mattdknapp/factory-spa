@@ -11,10 +11,8 @@ const Form = props => {
       name,
       min = 0,
       max = 1,
-      count,
-      numbers
+      count
     },
-    errors,
     errors: {
       name: nameError,
       min: minError,

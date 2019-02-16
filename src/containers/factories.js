@@ -4,8 +4,7 @@ import * as mapDispatchToProps from '../redux/actionCreators/factories'
 const mapStateToProps = state => {
   const {
     factories: {
-      data,
-      activeId
+      data
     }
   } = state
 
