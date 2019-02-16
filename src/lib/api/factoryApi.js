@@ -7,4 +7,3 @@ const defaultOpts = {
 
 export const getFactories = () => fetch('http://localhost:3001', defaultOpts)
   .then(res => res.json())
-

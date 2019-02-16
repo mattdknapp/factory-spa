@@ -1,12 +1,18 @@
-const SET_ATTRIBUTE = 'SET_ATTRIBUTE'
-const CLEAR_ACTIVE_FACTORY = 'CLEAR_ACTIVE_FACTORY'
-const SET_ACTIVE_FACTORY = 'SET_ACTIVE_FACTORY'
+import socket from '../lib/socket'
+
+export const SET_ATTRIBUTE = 'SET_ATTRIBUTE'
+export const CLEAR_ACTIVE_FACTORY = 'CLEAR_ACTIVE_FACTORY'
+export const SET_ACTIVE_FACTORY = 'SET_ACTIVE_FACTORY'
+export const SET_TRANSACTION_ID = 'SET_TRANSACTION_ID'
 
 const initialState = {
-  id: null,
-  name: '',
-  min: '',
-  max: ''
+  data: {
+    id: null,
+    name: '',
+    min: '',
+    max: ''
+  },
+  transactionId: null
 }
 
 const reducer = (state = initialState, action = {}) => {
@@ -19,10 +25,21 @@ const reducer = (state = initialState, action = {}) => {
     case SET_ATTRIBUTE:
       return {
         ...state,
-        [payload.key]: payload.value
+        data: {
+          ...state.data,
+          [payload.key]: payload.value
+        }
       }
     case SET_ACTIVE_FACTORY:
-      return payload
+      return {
+        ...state,
+        data: payload
+      }
+    case SET_TRANSACTION_ID:
+      return {
+        ...state,
+        transactionId: payload
+      }
     case CLEAR_ACTIVE_FACTORY:
       return initialState
     default:
@@ -40,6 +57,33 @@ export const clearActiveFactory = () => {
 
 export const setActiveFactory = payload => {
   return { type: SET_ACTIVE_FACTORY, payload }
+}
+
+export const setActionId = payload => {
+  return { type: SET_TRANSACTION_ID, payload }
+}
+
+export const updateFactory = () => {
+  return (dispatch, getState) => {
+    const transactionId = Math.random().toString(36).substring(14)
+    dispatch(setActionId)
+
+    const {
+      activeFactory
+    } = getState()
+
+    const factoryWithActionId = {
+      ...activeFactory.data,
+      transactionId
+    }
+
+    const onComplete = data => {
+      console.log("+++++++++++++++++++++++++")
+      console.log(data)
+      console.log("+++++++++++++++++++++++++")
+    }
+    socket.emit('UPDATE_FACTORY', JSON.stringify(factoryWithActionId), onComplete)
+  }
 }
 
 export default reducer

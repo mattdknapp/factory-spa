@@ -1,8 +1,7 @@
 import { connect } from 'react-redux'
 import {
   fetchFactories,
-  syncFactory,
-  updateFactory,
+  syncFactory
 } from '../reducers/factories'
 
 const mapStateToProps = state => {
@@ -20,8 +19,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   fetchFactories,
-  syncFactory,
-  updateFactory
+  syncFactory
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

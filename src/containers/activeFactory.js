@@ -2,23 +2,27 @@ import { connect } from 'react-redux'
 import {
   setActiveFactory,
   setAttribute,
-  clearActiveFactory
+  clearActiveFactory,
+  updateFactory,
 } from '../reducers/activeFactory'
 
 const mapStateToProps = state => {
   const {
-    activeFactory
+    activeFactory: {
+      data
+    }
   } = state
 
   return {
-    activeFactory
+    activeFactory: data
   }
 }
 
 const mapDispatchToProps = {
   setActiveFactory,
   setAttribute,
-  clearActiveFactory
+  clearActiveFactory,
+  updateFactory
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

@@ -1,8 +1,7 @@
 import * as apiCalls from '../lib/api/factoryApi'
-import socket from '../lib/socket'
 
-const LOAD_FACTORIES = 'LOAD_FACTORIES'
-const SYNC_FACTORY = 'SYNC_FACTORY'
+export const LOAD_FACTORIES = 'LOAD_FACTORIES'
+export const SYNC_FACTORY = 'SYNC_FACTORY'
 
 const initialState = {
   data: []
@@ -65,12 +64,6 @@ export const fetchFactories = () => {
 
     apiCalls.getFactories()
       .then(handleResponse)
-  }
-}
-
-export const updateFactory = payload => {
-  return () => {
-    socket.emit('UPDATE_FACTORY', JSON.stringify(payload))
   }
 }
 

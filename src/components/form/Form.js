@@ -1,21 +1,33 @@
 import React from 'react'
 import Input from './Input'
+import activeFactoryContainer from '../../containers/activeFactory'
 
 const cancelDefault = e => e.preventDefault()
 
 const Form = props => {
+  const {
+    activeFactory: {
+      name,
+      min,
+      max
+    },
+    setAttribute
+  } = props
+
+  console.log(props)
   return (
     <form onSubmit={cancelDefault}>
       <div className="form-group">
         <Input
           type="text"
-          value="tmp"
+          attributeKey="name"
+          value={name}
           label="Name"
-          handleChange={console.log}
+          setAttribute={setAttribute}
         />
       </div>
     </form>
   )
 }
 
-export default Form
+export default activeFactoryContainer(Form)

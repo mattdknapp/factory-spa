@@ -5,8 +5,16 @@ const Input = props => {
     label,
     type,
     value = '',
-    handleChange,
+    attributeKey,
+    setAttribute
   } = props
+
+  const handleChange = e => {
+    const newValue = e.target.value
+    const key = attributeKey
+
+    setAttribute({ key, value: newValue })
+  }
 
   return (
     <Fragment>
