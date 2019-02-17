@@ -6,7 +6,8 @@ const Root = props => {
   } = props
 
   return (
-    <div>
+    <div className="root">
+      Root
       <ul className="tree">
         { children }
       </ul>

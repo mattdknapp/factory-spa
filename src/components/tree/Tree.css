@@ -1,25 +1,33 @@
+div.root {
+  color: #369;
+  font-weight: bold;
+}
+
+div.root ul.tree {
+  padding-left: 10px;
+}
+
 ul.tree, ul.tree ul {
-list-style: none;
- margin: 0;
- padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 } 
 
 ul.tree ul {
- margin-left: 10px;
+  margin-left: 10px;
 }
 
 ul.tree li {
- margin: 0;
- padding: 0 7px;
- line-height: 20px;
- color: #369;
- font-weight: bold;
- border-left:1px solid rgb(100,100,100);
-
+  margin: 0;
+  padding: 0 7px;
+  line-height: 20px;
+  color: #369;
+  font-weight: bold;
+  border-left:1px solid rgb(100,100,100);
 }
 
 ul.tree li:last-child {
-	 border-left:none;
+	border-left:none;
 }
 
 ul.tree li:before {
@@ -57,5 +65,5 @@ ul.tree li button {
 }
 
 div.factory-actions {
-  width: 300px;
+  width: 90%;
 }
